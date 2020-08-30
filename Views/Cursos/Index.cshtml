@@ -4,44 +4,55 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Lista de cursos disponibles</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="Create"><i class="fas fa-plus"></i> Nuevo Curso</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Titulo)
+                Titulo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
+                Descripción
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaPublicacion)
+                Fecha de Publicación
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaPublicacion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Titulo
+                </td>
+                <td>
+                    @item.Descripcion
+                </td>
+                <td>
+                    @item.FechaPublicacion
+                </td>
+                <td>
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id"data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a> |
+                    <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id"> <i class="fas fa-info"></i> </a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+
+@section Scripts {
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+}

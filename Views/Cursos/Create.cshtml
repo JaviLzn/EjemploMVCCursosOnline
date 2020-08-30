@@ -4,37 +4,36 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>Curso</h4>
+<h4>Crear un Curso</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Titulo" class="control-label"></label>
-                <input asp-for="Titulo" class="form-control" />
+                <label asp-for="Titulo" class="control-label">Titulo del curso</label>
+                <input asp-for="Titulo" class="form-control" placeholder="Escriba el titulo del curso"/>
                 <span asp-validation-for="Titulo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
+                <label asp-for="Descripcion" class="control-label">Descripción del curso</label>
+                <input asp-for="Descripcion" class="form-control" placeholder="Escriba la descripción del curso"/>
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaPublicacion" class="control-label"></label>
+                <label asp-for="FechaPublicacion" class="control-label">Fecha de publicación</label>
                 <input asp-for="FechaPublicacion" class="form-control" />
                 <span asp-validation-for="FechaPublicacion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Crear" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Regresar</a>
 </div>
 
