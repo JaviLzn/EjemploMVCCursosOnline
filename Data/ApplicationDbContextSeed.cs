@@ -54,9 +54,9 @@ namespace EjemploMVCCursosOnline.Data
             if (!context.CursoInstructor.Any())
             {
                 var listaCursoInstructor = new List<CursoInstructor>() {
-                    new CursoInstructor { Curso = context.Curso.Where(c => c.Titulo.EndsWith("1")).FirstOrDefault(), Instructor = context.Instructor.Where(c => c.Profesion.Contains("Actor")).FirstOrDefault()  },
-                    new CursoInstructor { Curso = context.Curso.Where(c => c.Titulo.EndsWith("3")).FirstOrDefault(), Instructor = context.Instructor.Where(c => c.Profesion.Contains("Arquitecto")).FirstOrDefault()  },
-                    new CursoInstructor { Curso = context.Curso.Where(c => c.Titulo.EndsWith("6")).FirstOrDefault(), Instructor = context.Instructor.Where(c => c.Profesion.Contains("Abogado")).FirstOrDefault()  }
+                    new CursoInstructor { Curso = context.Curso.Where(c => c.Titulo.EndsWith("1")).FirstOrDefault(), Instructor = context.Instructor.Where(c => c.Profesion == "Actor").FirstOrDefault()  },
+                    new CursoInstructor { Curso = context.Curso.Where(c => c.Titulo.EndsWith("3")).FirstOrDefault(), Instructor = context.Instructor.Where(c => c.Profesion == "Arquitecto").FirstOrDefault()  },
+                    new CursoInstructor { Curso = context.Curso.Where(c => c.Titulo.EndsWith("6")).FirstOrDefault(), Instructor = context.Instructor.Where(c => c.Profesion == "Abogado").FirstOrDefault()  }
                 };
 
                 context.CursoInstructor.AddRange(listaCursoInstructor);
