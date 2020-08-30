@@ -1,12 +1,10 @@
 ﻿@model EjemploMVCCursosOnline.Models.Curso
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Modificar Curso";
 }
 
-<h1>Edit</h1>
-
-<h4>Curso</h4>
+<h4>@ViewData["Title"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,28 +12,32 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Titulo" class="control-label"></label>
-                <input asp-for="Titulo" class="form-control" />
+                <label asp-for="Titulo" class="control-label font-weight-bold">Título del curso</label>
+                <input asp-for="Titulo" class="form-control" placeholder="Escriba el título del curso" autocomplete="off"/>
                 <span asp-validation-for="Titulo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
+                <label asp-for="Descripcion" class="control-label font-weight-bold">Descripción del curso</label>
+                <textarea asp-for="Descripcion" class="form-control" rows="5" placeholder="Escriba la descripción del curso"></textarea>
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaPublicacion" class="control-label"></label>
+                <label asp-for="FechaPublicacion" class="control-label font-weight-bold"></label>
                 <input asp-for="FechaPublicacion" class="form-control" />
                 <span asp-validation-for="FechaPublicacion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <button type="submit" class="btn btn-outline-primary w-100"><i class="fas fa-save"></i> Guardar</button>
+            </div>
+            <div class="form-group">
+                <a asp-action="Index" class="btn btn-light w-100"><i class="fas fa-arrow-left"></i> Regresar</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 
