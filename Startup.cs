@@ -1,5 +1,7 @@
 using EjemploMVCCursosOnline.Data;
 using EjemploMVCCursosOnline.Helpers;
+using EjemploMVCCursosOnline.Models.Validaciones;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -25,9 +27,14 @@ namespace EjemploMVCCursosOnline
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddControllersWithViews()
+                    // * Se agrega FluentValidation
+                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CursoValidator>());
+
             services.AddRazorPages().AddRazorRuntimeCompilation();
 
             services.AddTransient<IServicioUsuarioActual, ServicioUsuarioActual>();
