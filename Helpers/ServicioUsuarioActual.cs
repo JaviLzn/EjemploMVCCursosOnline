@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
+using System.Security.Claims;
 
 namespace EjemploMVCCursosOnline.Helpers
 {
@@ -15,7 +16,7 @@ namespace EjemploMVCCursosOnline.Helpers
 
         public string ObtenerNombreUsuarioActual()
         {
-            return httpContextAccessor.HttpContext.User.Identity.Name ?? "Usuario no establecido";
+            return httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier) ?? "Usuario no establecido";
         }
     }
 }

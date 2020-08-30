@@ -26,6 +26,7 @@ namespace EjemploMVCCursosOnline.Data
         public DbSet<Precio> Precio { get; set; }
         public DbSet<Comentario> Comentario { get; set; }
         public DbSet<Instructor> Instructor { get; set; }
+        public DbSet<CursoInstructor> CursoInstructor { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,8 +47,7 @@ namespace EjemploMVCCursosOnline.Data
         private void GuardarCambiosConAuditoria()
         {
 
-            string[] propiedades = new[]{
-                "FechaCreacion",
+            var propiedades = new[] {
                 "UsuarioCreacion",
                 "FechaModificacion",
                 "UsuarioModificacion",
@@ -56,9 +56,9 @@ namespace EjemploMVCCursosOnline.Data
 
             var Entries = ChangeTracker.Entries()
                 .Where(e => (e.State == EntityState.Added
-                || e.State == EntityState.Modified
-                || e.State == EntityState.Deleted)
-                && e.Properties.Any(p => propiedades.Contains(p.Metadata.Name))
+                             || e.State == EntityState.Modified
+                             || e.State == EntityState.Deleted)
+                             && e.Properties.Any(p => propiedades.Contains(p.Metadata.Name))
                 );
 
             foreach (var entry in Entries)
@@ -69,30 +69,23 @@ namespace EjemploMVCCursosOnline.Data
                 //var currentUser = _contextData.CurrentUser;
 
 
-                entry.Property("FechaModificacion").CurrentValue = today;
-                entry.Property("UsuarioModificacion").CurrentValue = currentUser;
-                if (entry.State == EntityState.Added)
+                switch (entry.State)
                 {
-                    entry.Property("FechaCreacion").CurrentValue = today;
-                    entry.Property("UsuarioCreacion").CurrentValue = currentUser;
-                }
-
-                //if (entry.State == EntityState.Modified)
-                //{
-                //    entry.Property("FechaCreacion").IsModified = false;
-                //    entry.Property("UsuarioCreacion").IsModified = false;
-                //}
-
-                if (entry.State == EntityState.Deleted)
-                {
-                    entry.State = EntityState.Modified;
-                    entry.Property("EstaBorrado").CurrentValue = true;
+                    case EntityState.Added:
+                        entry.Property("UsuarioCreacion").CurrentValue = currentUser;
+                        entry.Property("UsuarioModificacion").CurrentValue = currentUser;
+                        break;
+                    case EntityState.Modified:
+                        entry.Property("FechaModificacion").CurrentValue = today;
+                        entry.Property("UsuarioModificacion").CurrentValue = currentUser;
+                        break;
+                    case EntityState.Deleted:
+                        entry.State = EntityState.Modified;
+                        entry.Property("EstaBorrado").CurrentValue = true;
+                        break;
                 }
 
             }
-
         }
-
-
     }
 }
