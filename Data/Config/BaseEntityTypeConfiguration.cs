@@ -28,8 +28,8 @@ namespace EjemploMVCCursosOnline.Data.Config
                    .IsRequired();
 
             builder.Property<bool>("EstaBorrado")
-                   .IsRequired()
-                   .HasDefaultValue(false);
+                   .HasDefaultValue(false)
+                   .IsRequired();
 
             builder.HasQueryFilter(m => EF.Property<bool>(m, "EstaBorrado") == false);
 
