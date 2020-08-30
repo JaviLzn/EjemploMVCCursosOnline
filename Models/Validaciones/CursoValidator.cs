@@ -6,9 +6,9 @@ namespace EjemploMVCCursosOnline.Models.Validaciones
     {
         public CursoValidator()
         {
-            RuleFor(x => x.Titulo).NotEmpty();
-            RuleFor(x => x.Descripcion).NotEmpty();
-            RuleFor(x => x.FechaPublicacion).NotEmpty();
+            RuleFor(x => x.Titulo).NotEmpty().WithMessage("Debe especificar el título del curso.");
+            RuleFor(x => x.Descripcion).NotEmpty().WithMessage("Debe especificar la descripción del curso.");
+            RuleFor(x => x.FechaPublicacion).NotEmpty().WithMessage("Debe seleccionar una fecha de publicación.");
         }
     }
 }
