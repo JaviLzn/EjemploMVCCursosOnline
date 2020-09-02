@@ -43,7 +43,8 @@ namespace EjemploMVCCursosOnline.Controllers
         // GET: Cursos/Create
         public IActionResult Create()
         {
-            
+            ViewBag.Action = "Create";
+            ViewBag.TituloAction = "Nuevo Curso";
             return PartialView("_ModalPartial");
         }
 
@@ -60,6 +61,8 @@ namespace EjemploMVCCursosOnline.Controllers
                 await _context.SaveChangesAsync();
             }
 
+            ViewBag.Action = "Create";
+            ViewBag.TituloAction = "Nuevo Curso";
             return PartialView("_ModalPartial", curso);
         }
 
@@ -76,7 +79,10 @@ namespace EjemploMVCCursosOnline.Controllers
             {
                 return NotFound();
             }
-            return View(curso);
+
+            ViewBag.Action = "Edit";
+            ViewBag.TituloAction = "Modificar Curso";
+            return PartialView("_ModalPartial", curso);
         }
 
         // POST: Cursos/Edit/5
@@ -109,9 +115,12 @@ namespace EjemploMVCCursosOnline.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                
             }
-            return View(curso);
+
+            ViewBag.Action = "Edit";
+            ViewBag.TituloAction = "Modificar Curso";
+            return PartialView("_ModalPartial", curso);
         }
 
         // GET: Cursos/Delete/5

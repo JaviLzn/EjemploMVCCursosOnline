@@ -1,16 +1,17 @@
 ﻿@model Curso
 <!-- Modal -->
-<div class="modal fade" id="add-Curso" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="addCursoLabel" aria-hidden="true">
+<div class="modal fade" id="modal-Curso" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="modalCursoLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="form">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addCursoLabel">Nuevo Curso</h5>
+                <h5 class="modal-title" id="modalCursoLabel">@ViewBag.TituloAction</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-action="Create">
+                <form asp-action="@ViewBag.Action">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
                     <div class="form-group">
                         <label asp-for="Titulo" class="control-label font-weight-bold">Título del curso</label>

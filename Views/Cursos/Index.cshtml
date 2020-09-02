@@ -10,7 +10,7 @@
 
 <p>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-backdrop="static" data-toggle="ajax-modal" data-target="#add-Curso" data-url="@Url.Action("Create")"><i class="fas fa-plus"></i> Nuevo Curso</button>
+    <button type="button" class="btn btn-primary" data-backdrop="static" data-toggle="ajax-modal" data-target="#modal-Curso" data-url="@Url.Action("Create")"><i class="fas fa-plus"></i> Nuevo Curso</button>
 </p>
 <table class="table">
     <thead>
@@ -41,9 +41,9 @@
                     @item.FechaPublicacion
                 </td>
                 <td>
-                    <a class="btn btn-outline-info w-25" asp-action="Edit" asp-route-id="@item.Id" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
-                    <a class="btn btn-outline-success w-25" asp-action="Details" asp-route-id="@item.Id" data-toggle="tooltip" data-placement="top" title="Detalle"> <i class="fas fa-info"></i> </a>
-                    <a class="btn btn-outline-danger w-25" asp-action="Delete" asp-route-id="@item.Id" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a>
+                    <button type="button" class="btn btn-outline-info w-25" data-backdrop="static" data-toggle="ajax-modal" data-tooltip="tooltip" title="Editar" data-target="#modal-Curso" data-url="@Url.Action("Edit")/@item.Id"><i class="fas fa-edit"></i></button>
+                    <a class="btn btn-outline-success w-25" asp-action="Details" asp-route-id="@item.Id" data-tooltip="tooltip" data-placement="top" title="Detalle"> <i class="fas fa-info"></i> </a>
+                    <a class="btn btn-outline-danger w-25" asp-action="Delete" asp-route-id="@item.Id" data-tooltip="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         }
@@ -57,8 +57,10 @@
     <script>
         ///Mostrar Tooltip
         $(function () {
-            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-tooltip="tooltip"]').tooltip();
+
         });
+
 
     </script>
 }
