@@ -1,0 +1,42 @@
+﻿@model Curso
+<!-- Modal -->
+<div class="modal fade" id="add-Curso" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="addCursoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="form">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCursoLabel">Nuevo Curso</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Create">
+                    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+                    <div class="form-group">
+                        <label asp-for="Titulo" class="control-label font-weight-bold">Título del curso</label>
+                        <input asp-for="Titulo" class="form-control" placeholder="Escriba el título del curso" autocomplete="off" />
+                        <span asp-validation-for="Titulo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Descripcion" class="control-label font-weight-bold">Descripción del curso</label>
+                        <textarea asp-for="Descripcion" class="form-control" rows="5" placeholder="Escriba la descripción del curso"></textarea>
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FechaPublicacion" class="control-label font-weight-bold">Fecha de publicación</label>
+                        <input asp-for="FechaPublicacion" class="form-control" />
+                        <span asp-validation-for="FechaPublicacion" class="text-danger"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-save="modal">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

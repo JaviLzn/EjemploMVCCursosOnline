@@ -43,7 +43,8 @@ namespace EjemploMVCCursosOnline.Controllers
         // GET: Cursos/Create
         public IActionResult Create()
         {
-            return View();
+            
+            return PartialView("_ModalPartial");
         }
 
         // POST: Cursos/Create
@@ -57,9 +58,9 @@ namespace EjemploMVCCursosOnline.Controllers
             {
                 _context.Add(curso);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
             }
-            return View(curso);
+
+            return PartialView("_ModalPartial", curso);
         }
 
         // GET: Cursos/Edit/5
