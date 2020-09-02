@@ -1,9 +1,9 @@
 ﻿// Despues de document.ready
 $(function () {
-    var placeholderElement = $('#modal-placeholder');
+    let placeholderElement = $('#modal-placeholder');
     // all buttons with data-toggle equal to ajax-modal
-    $('button[data-toggle="ajax-modal"]').click(function (event) {
-        var url = $(this).data('url');
+    $('button[data-toggle="ajax-modal"]').click(function () {
+        let url = $(this).data('url');
         $.get(url).done(function (data) {
             placeholderElement.html(data);
             placeholderElement.find('.modal').modal('show');
@@ -13,20 +13,21 @@ $(function () {
     placeholderElement.on('click', '[data-save="modal"]', function (event) {
         event.preventDefault();
 
-        var form = $(this).parents('.modal').find('form');
-        var actionUrl = form.attr('action');
-        var dataToSend = form.serialize();
+        let form = $(this).parents('.modal').find('form');
+        let actionUrl = form.attr('action');
+        let dataToSend = form.serialize();
 
         $.post(actionUrl, dataToSend).done(function (data) {
-            var newBody = $('.modal-body', data);
+            let newBody = $('.modal-body', data);
             placeholderElement.find('.modal-body').replaceWith(newBody);
 
-            var isValid = newBody.find('[name="IsValid"]').val() == 'True';
+            form = newBody.find('form');
+            $.validator.unobtrusive.parse(form);
 
-            if (isValid) {
+            if (form.valid()) {
                 placeholderElement.find('.modal').modal('hide');
             }
         });
     });
-
 });
+
