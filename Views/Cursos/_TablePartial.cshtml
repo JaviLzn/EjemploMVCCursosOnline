@@ -1,0 +1,43 @@
+﻿@model IEnumerable<EjemploMVCCursosOnline.Models.Curso>
+
+<table id="tablaCursos" class="table">
+    <thead>
+        <tr>
+            <th>
+                Título
+            </th>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Fecha de Publicación
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Titulo
+                </td>
+                <td>
+                    @item.Descripcion
+                </td>
+                <td>
+                    @item.FechaPublicacion
+                </td>
+                <td>
+                    <div class="btn-group">
+
+
+                        <button type="button" class="btn btn-outline-info controlbutton" data-backdrop="static" data-toggle="ajax-modal" data-tooltip="tooltip" title="Editar" data-target="#modal-Curso" data-url="@Url.Action("Edit")/@item.Id"><i class="fas fa-edit"></i></button>
+                        <a class="btn btn-outline-success controlbutton" asp-action="Details" asp-route-id="@item.Id" data-tooltip="tooltip" data-placement="top" title="Detalle"> <i class="fas fa-info"></i> </a>
+                        <a class="btn btn-outline-danger controlbutton" asp-action="Delete" asp-route-id="@item.Id" data-tooltip="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

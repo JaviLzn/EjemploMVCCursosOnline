@@ -12,43 +12,12 @@
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-backdrop="static" data-toggle="ajax-modal" data-target="#modal-Curso" data-url="@Url.Action("Create")"><i class="fas fa-plus"></i> Nuevo Curso</button>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Título
-            </th>
-            <th>
-                Descripción
-            </th>
-            <th>
-                Fecha de Publicación
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @item.Titulo
-                </td>
-                <td>
-                    @item.Descripcion
-                </td>
-                <td>
-                    @item.FechaPublicacion
-                </td>
-                <td>
-                    <button type="button" class="btn btn-outline-info w-25" data-backdrop="static" data-toggle="ajax-modal" data-tooltip="tooltip" title="Editar" data-target="#modal-Curso" data-url="@Url.Action("Edit")/@item.Id"><i class="fas fa-edit"></i></button>
-                    <a class="btn btn-outline-success w-25" asp-action="Details" asp-route-id="@item.Id" data-tooltip="tooltip" data-placement="top" title="Detalle"> <i class="fas fa-info"></i> </a>
-                    <a class="btn btn-outline-danger w-25" asp-action="Delete" asp-route-id="@item.Id" data-tooltip="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+<!-- table placeholder -->
+<div id="table-placeholder">
+    <partial name="_TablePartial" for="@Model" />
+</div>
+
 
 @section Scripts {
 
@@ -58,6 +27,12 @@
         ///Mostrar Tooltip
         $(function () {
             $('[data-tooltip="tooltip"]').tooltip();
+
+            $('#tablaCursos').dataTable({
+                "language": {
+                    "url": "/lib/datatables/i18n/spanish.json"
+                }
+            });
 
         });
 
